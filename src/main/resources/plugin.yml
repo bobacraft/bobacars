@@ -3,3 +3,7 @@ version: 1.0
 author: bbaovanc
 main: best.boba.bobacars.bobacars
 api-version: 1.17
+commands:
+  cars:
+    description: Command to do anything related to bobacars.
+    usage: /<command> <subcommand> [args]
