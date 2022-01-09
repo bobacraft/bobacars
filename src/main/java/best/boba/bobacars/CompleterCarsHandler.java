@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CompleterCarsHandler implements TabCompleter {
-    private Config config;
+    private final Config config;
     public CompleterCarsHandler(final Config config) {
         this.config = config;
     }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompleterCarsSpawn implements CompleterCarsInterface {
-    private Config config;
+    private final Config config;
     public CompleterCarsSpawn(final Config config) {
         this.config = config;
     }

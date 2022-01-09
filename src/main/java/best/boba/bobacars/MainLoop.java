@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class MainLoop extends BukkitRunnable {
-    private Config config;
+    private final Config config;
     public MainLoop(Config config) {
         this.config = config;
     }

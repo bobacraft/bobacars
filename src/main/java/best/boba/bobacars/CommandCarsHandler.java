@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class CommandCarsHandler implements CommandExecutor {
-    private Config config;
+    private final Config config;
     public CommandCarsHandler(final Config config) {
         this.config = config;
     }

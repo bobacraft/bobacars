@@ -10,7 +10,7 @@ import org.bukkit.event.vehicle.VehicleDestroyEvent;
 import java.util.UUID;
 
 public class ListenerVehicleDestroy implements Listener {
-    private Config config;
+    private final Config config;
     public ListenerVehicleDestroy(Config config) {
         this.config = config;
     }

@@ -10,7 +10,7 @@ import org.bukkit.event.vehicle.VehicleEnterEvent;
 import java.util.UUID;
 
 public class ListenerVehicleEnter implements Listener {
-    private Config config;
+    private final Config config;
     public ListenerVehicleEnter(Config config) {
         this.config = config;
     }

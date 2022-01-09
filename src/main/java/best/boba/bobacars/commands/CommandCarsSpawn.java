@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 
 public class CommandCarsSpawn implements CommandCarsInterface {
-    private Config config;
+    private final Config config;
     public CommandCarsSpawn(final Config config) {
         this.config = config;
     }

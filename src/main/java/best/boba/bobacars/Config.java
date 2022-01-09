@@ -1,8 +1,6 @@
 package best.boba.bobacars;
 
 import best.boba.bobacars.car.Car;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
