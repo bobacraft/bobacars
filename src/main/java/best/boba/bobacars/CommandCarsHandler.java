@@ -9,14 +9,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class CommandCarsHandler implements CommandExecutor {
-    private Config config = null;
+    private Config config;
     public CommandCarsHandler(final Config config) {
         this.config = config;
     }
 
     // https://bukkit.org/threads/tutorial-sub-commands-in-different-classes.203341/
 
-    private static HashMap<String, CommandCarsInterface> subcommands = new HashMap<>();
+    private static final HashMap<String, CommandCarsInterface> subcommands = new HashMap<>();
 
     public void register(String name, CommandCarsInterface command) {
         subcommands.put(name, command);

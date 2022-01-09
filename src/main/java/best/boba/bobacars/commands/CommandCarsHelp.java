@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandCarsHelp implements CommandCarsInterface {
-    private Config config = null;
+    private Config config;
     public CommandCarsHelp(final Config config) {
         this.config = config;
     }

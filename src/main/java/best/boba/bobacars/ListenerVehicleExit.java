@@ -5,18 +5,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.RideableMinecart;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.vehicle.VehicleDestroyEvent;
+import org.bukkit.event.vehicle.VehicleExitEvent;
 
 import java.util.UUID;
 
-public class ListenerVehicleDestroy implements Listener {
+public class ListenerVehicleExit implements Listener {
     private Config config;
-    public ListenerVehicleDestroy(Config config) {
+    public ListenerVehicleExit(Config config) {
         this.config = config;
     }
 
     @EventHandler
-    public void onVehicleDestroy(VehicleDestroyEvent event) {
+    public void onVehicleExit(VehicleExitEvent event) {
         if (!(event.getVehicle() instanceof RideableMinecart minecart)) {
             return;
         }
@@ -25,13 +25,12 @@ public class ListenerVehicleDestroy implements Listener {
         if (car == null) {
             return;
         }
-
-        car.destroy();
-        config.removeCar(uuid);
-        config.getLogger().info("Destroyed a bobacar with UUID " + uuid);
-
-        if ((event.getAttacker() instanceof Player player)) {
-            player.sendMessage("Destroyed a bobacar.");
+        if (!(event.getExited() instanceof Player player)) {
+            return;
         }
+
+        car.getEngineRPMBar().removePlayer(player);
+        car.getSpeedBar().removePlayer(player);
+        player.sendMessage("Exited a bobacar.");
     }
 }

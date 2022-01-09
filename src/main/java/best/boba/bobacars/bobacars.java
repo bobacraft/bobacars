@@ -4,6 +4,7 @@ import best.boba.bobacars.commands.CommandCarsHelp;
 import best.boba.bobacars.commands.CommandCarsSpawn;
 import best.boba.bobacars.completers.CompleterCarsHelp;
 import best.boba.bobacars.completers.CompleterCarsSpawn;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class bobacars extends JavaPlugin {
@@ -25,14 +26,23 @@ public class bobacars extends JavaPlugin {
     }
 
     public void registerListeners() {
-        getServer().getPluginManager().registerEvents(new ListenerVehicleDestroy(), this);
+        PluginManager manager = getServer().getPluginManager();
+        manager.registerEvents(new ListenerVehicleDestroy(config), this);
+        manager.registerEvents(new ListenerVehicleEnter(config), this);
+        manager.registerEvents(new ListenerVehicleExit(config), this);
+    }
+
+    public void registerTasks() {
+        new MainLoop(config).runTaskTimer(this, 20L, 5L);
     }
 
     @Override
     public void onEnable() {
         this.config = new Config(this);
+
         registerCarCommands();
         registerListeners();
+        registerTasks();
     }
 
     @Override

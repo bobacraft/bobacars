@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompleterCarsHelp implements CompleterCarsInterface {
-    private Config config = null;
+    private Config config;
     public CompleterCarsHelp(final Config config) {
         this.config = config;
     }

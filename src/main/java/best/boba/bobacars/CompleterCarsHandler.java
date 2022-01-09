@@ -1,6 +1,5 @@
 package best.boba.bobacars;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -13,14 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CompleterCarsHandler implements TabCompleter {
-    private Config config = null;
+    private Config config;
     public CompleterCarsHandler(final Config config) {
         this.config = config;
     }
 
     // https://bukkit.org/threads/tutorial-sub-commands-in-different-classes.203341/
 
-    private static HashMap<String, CompleterCarsInterface> subcompleters = new HashMap<>();
+    private static final HashMap<String, CompleterCarsInterface> subcompleters = new HashMap<>();
 
     public void register(String name, CompleterCarsInterface command) {
         subcompleters.put(name, command);
