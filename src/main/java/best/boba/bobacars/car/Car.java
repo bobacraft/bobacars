@@ -4,8 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
-import org.bukkit.entity.minecart.RideableMinecart;
-import org.bukkit.util.Vector;
 
 
 public class Car {
@@ -16,7 +14,7 @@ public class Car {
     final BossBar engineRPMBar;
     final BossBar speedBar;
 
-    public Car(CarModel carModel, RideableMinecart minecart) {
+    public Car(CarModel carModel) {
         this.model = carModel;
         this.currentGear = 1;
         this.engineRPMBar = Bukkit.createBossBar("0 rpm", BarColor.BLUE, BarStyle.SOLID);

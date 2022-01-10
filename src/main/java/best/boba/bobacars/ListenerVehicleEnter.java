@@ -1,11 +1,15 @@
 package best.boba.bobacars;
 
 import best.boba.bobacars.car.Car;
+import best.boba.bobacars.car.CarModel;
+import best.boba.bobacars.car.CarModelDataType;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.RideableMinecart;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
+import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.UUID;
 
@@ -20,13 +24,26 @@ public class ListenerVehicleEnter implements Listener {
         if (!(event.getVehicle() instanceof RideableMinecart minecart)) {
             return;
         }
-        UUID uuid = minecart.getUniqueId();
-        Car car = config.getCar(uuid);
-        if (car == null) {
-            return;
-        }
         if (!(event.getEntered() instanceof Player player)) {
             return;
+        }
+
+        PersistentDataContainer container = minecart.getPersistentDataContainer();
+        NamespacedKey key = new NamespacedKey(config.getPlugin(), "bobacarModel");
+        CarModelDataType dataType = new CarModelDataType();
+
+        if (!container.has(key, dataType)) {
+            return;
+        }
+
+        CarModel model = container.get(key, dataType);
+        UUID uuid = minecart.getUniqueId();
+        Car car;
+        if (!config.hasCar(uuid)) {
+            car = new Car(model);
+            config.addCar(uuid, car);
+        } else {
+            car = config.getCar(uuid);
         }
 
         car.getEngineRPMBar().addPlayer(player);

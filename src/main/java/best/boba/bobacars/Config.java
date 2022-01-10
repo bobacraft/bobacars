@@ -38,6 +38,11 @@ public class Config {
     }
 
 
+    public boolean hasCar(@NotNull UUID uuid) {
+        return cars.containsKey(uuid);
+    }
+
+
     public void addCar(UUID uuid, Car car) {
         cars.put(uuid, car);
     }

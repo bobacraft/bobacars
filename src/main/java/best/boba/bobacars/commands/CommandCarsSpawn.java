@@ -3,7 +3,6 @@ package best.boba.bobacars.commands;
 import best.boba.bobacars.CommandCarsInterface;
 import best.boba.bobacars.Config;
 import best.boba.bobacars.Messages;
-import best.boba.bobacars.car.Car;
 import best.boba.bobacars.car.CarModel;
 import best.boba.bobacars.car.CarModelDataType;
 import best.boba.bobacars.cars.camry.XLE2010;
@@ -17,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.RideableMinecart;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
 import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
