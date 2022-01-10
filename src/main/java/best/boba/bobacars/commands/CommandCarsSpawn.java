@@ -2,7 +2,8 @@ package best.boba.bobacars.commands;
 
 import best.boba.bobacars.CommandCarsInterface;
 import best.boba.bobacars.Config;
-import best.boba.bobacars.Messages;
+import best.boba.bobacars.messages.BobacarMessages;
+import best.boba.bobacars.messages.CommandMessages;
 import best.boba.bobacars.car.CarModel;
 import best.boba.bobacars.car.CarModelDataType;
 import best.boba.bobacars.cars.camry.XLE2010;
@@ -29,7 +30,7 @@ public class CommandCarsSpawn implements CommandCarsInterface {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(Messages.senderIsNotPlayer);
+            sender.sendMessage(CommandMessages.senderIsNotPlayer);
             return false;
         }
 
@@ -43,8 +44,7 @@ public class CommandCarsSpawn implements CommandCarsInterface {
         NamespacedKey key = new NamespacedKey(config.getPlugin(), "bobacarModel");
         CarModel model = new XLE2010();
         container.set(key, new CarModelDataType(), model);
-        sender.sendMessage("Spawned a bobacar.");
-        config.getLogger().info("Spawned a bobacar with UUID " + uuid);
+        sender.sendMessage(BobacarMessages.spawned);
 
         VehicleEnterEvent enterEvent = new VehicleEnterEvent(minecart, player);
         Bukkit.getPluginManager().callEvent(enterEvent);

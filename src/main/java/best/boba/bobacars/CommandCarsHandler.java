@@ -1,5 +1,6 @@
 package best.boba.bobacars;
 
+import best.boba.bobacars.messages.CommandMessages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -47,7 +48,7 @@ public class CommandCarsHandler implements CommandExecutor {
             return getExecutor(args[0]).onCommand(sender, command, label, subcommandArgs);
         }
 
-        sender.sendMessage(Messages.invalidSubcommand);
+        sender.sendMessage(CommandMessages.invalidSubcommand);
         return false;
     }
 }

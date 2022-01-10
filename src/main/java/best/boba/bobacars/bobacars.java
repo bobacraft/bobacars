@@ -31,6 +31,7 @@ public class bobacars extends JavaPlugin {
         manager.registerEvents(new ListenerVehicleEnter(config), this);
         manager.registerEvents(new ListenerVehicleExit(config), this);
         manager.registerEvents(new ListenerPlayerItemHeld(config), this);
+        manager.registerEvents(new ListenerPlayerSwapHandItems(config), this);
     }
 
     public void registerTasks() {
