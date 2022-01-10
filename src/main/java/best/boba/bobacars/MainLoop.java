@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.RideableMinecart;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import java.util.Map;
 import java.util.UUID;
@@ -31,6 +32,8 @@ public class MainLoop extends BukkitRunnable {
             }
 
             Car car = entry.getValue();
+            Vector velocity = new Vector(car.getSpeed(), 0, 0);
+            minecart.setVelocity(velocity);
         }
     }
 }

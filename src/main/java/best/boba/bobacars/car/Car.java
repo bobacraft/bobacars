@@ -12,6 +12,7 @@ public class Car {
     final CarModel model;
     int currentGear;
     double engineRPM;
+    double speed;
     final BossBar engineRPMBar;
     final BossBar speedBar;
 
@@ -24,6 +25,10 @@ public class Car {
 
     public double getEngineRPM() {
         return engineRPM;
+    }
+
+    public double getSpeed() {
+        return speed;
     }
 
     public BossBar getEngineRPMBar() {
@@ -44,22 +49,20 @@ public class Car {
     }
 
 
-    public void setEngineRPM(double engineRPM, RideableMinecart minecart) {
+    public void setEngineRPM(double engineRPM) {
         this.engineRPM = engineRPM;
+        this.engineRPMBar.setTitle((int) this.engineRPM + " rpm");
+        this.engineRPMBar.setProgress(this.engineRPM / 7500); // bar is out of 7500 rpm
 
         double finalDriveRatio = this.model.getFinalDrive();
         double currentGearRatio = this.model.getForwardGear(this.currentGear);
-        double speed = (this.engineRPM / (currentGearRatio * finalDriveRatio))  // convert engine speed to wheel speed
-                            / (60 * 20)                     // convert to revs per tick
-                            / this.model.getRevsPerMeter(); // divide by revs per meter - TODO: replace this with variable
-        Vector vector = new Vector(speed, 0, 0);
-        minecart.setVelocity(vector);
-    }
+        this.speed = (this.engineRPM / (currentGearRatio * finalDriveRatio))  // convert engine speed to wheel speed
+                / (60 * 20)                     // convert to revs per tick
+                / this.model.getRevsPerMeter(); // divide by revs per meter
 
-
-    public void updateEngineRPM() {
-        this.engineRPMBar.setTitle((int) this.engineRPM + " rpm");
-        this.engineRPMBar.setProgress(this.engineRPM / 7500); // bar is out of 7500 rpm
+        double kmph = this.speed * 20 * 3600 / 1000;
+        this.speedBar.setTitle(String.format("%.2f km/h", kmph));
+        this.speedBar.setProgress(kmph / 200);
     }
 
 

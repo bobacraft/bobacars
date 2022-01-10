@@ -2,6 +2,8 @@ package best.boba.bobacars;
 
 import best.boba.bobacars.car.Car;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,25 +15,25 @@ public class Config {
     private final Logger logger;
     private final Map<UUID, Car> cars;
 
-    public Config(final JavaPlugin plugin) {
+    public Config(@NotNull final JavaPlugin plugin) {
         this.plugin = plugin;
         this.logger = plugin.getLogger();
         this.cars = new HashMap<>();
     }
 
-    public JavaPlugin getPlugin() {
+    public @NotNull JavaPlugin getPlugin() {
         return plugin;
     }
 
-    public Logger getLogger() {
+    public @NotNull Logger getLogger() {
         return logger;
     }
 
-    public Car getCar(UUID uuid) {
+    public @Nullable Car getCar(@NotNull UUID uuid) {
         return cars.get(uuid);
     }
 
-    public Map<UUID, Car> getCars() {
+    public @NotNull Map<UUID, Car> getCars() {
         return cars;
     }
 

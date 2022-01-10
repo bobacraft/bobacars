@@ -4,8 +4,11 @@ import best.boba.bobacars.CommandCarsInterface;
 import best.boba.bobacars.Config;
 import best.boba.bobacars.Messages;
 import best.boba.bobacars.car.Car;
+import best.boba.bobacars.car.CarModel;
+import best.boba.bobacars.car.CarModelDataType;
 import best.boba.bobacars.cars.camry.XLE2010;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,6 +16,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.RideableMinecart;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
@@ -33,9 +38,13 @@ public class CommandCarsSpawn implements CommandCarsInterface {
         World world = player.getWorld();
         RideableMinecart minecart = (RideableMinecart) world.spawnEntity(player.getLocation(), EntityType.MINECART);
         UUID uuid = minecart.getUniqueId();
-        Car car = new Car(new XLE2010(), minecart);
         minecart.addPassenger(player);
-        config.addCar(uuid, car);
+        minecart.setGravity(false);
+
+        PersistentDataContainer container = minecart.getPersistentDataContainer();
+        NamespacedKey key = new NamespacedKey(config.getPlugin(), "bobacarModel");
+        CarModel model = new XLE2010();
+        container.set(key, new CarModelDataType(), model);
         sender.sendMessage("Spawned a bobacar.");
         config.getLogger().info("Spawned a bobacar with UUID " + uuid);
 

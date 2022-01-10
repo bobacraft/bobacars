@@ -1,33 +1,11 @@
 package best.boba.bobacars.car;
 
-public class CarModel {
-    static double finalDrive;
-    static double[] forwardGears;
-    static double[] reverseGears;
-    static double revsPerMeter;
+import java.io.Serializable;
 
-    public double getFinalDrive() {
-        return finalDrive;
-    }
-
-    public double[] getForwardGears() {
-        return forwardGears;
-    }
-
-    public double[] getReverseGears() {
-        return reverseGears;
-    }
-
-    // TODO: don't let these next 2 functions use out of bounds index
-    public double getForwardGear(int gear) {
-        return forwardGears[gear - 1];
-    }
-
-    public double getReverseGear(int gear) {
-        return reverseGears[gear - 1];
-    }
-
-    public double getRevsPerMeter() {
-        return revsPerMeter;
-    }
+public interface CarModel extends Serializable {
+    double getFinalDrive();
+    double[] getForwardGears();
+    double getForwardGear(int gear);
+    double getReverseGear();
+    double getRevsPerMeter();
 }
