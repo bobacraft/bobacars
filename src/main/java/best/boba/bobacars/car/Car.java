@@ -54,15 +54,18 @@ public class Car {
 
     public TransmissionDirection.Direction cycleTransmissionDirection() {
         this.transmissionDirection.cycle();
+        updateSpeed();
         return this.transmissionDirection.getDirection();
     }
 
     public void downshift() {
         this.currentGear--;
+        updateSpeed();
     }
 
     public void upshift() {
         this.currentGear++;
+        updateSpeed();
     }
 
 
@@ -71,6 +74,10 @@ public class Car {
         this.engineRPMBar.setTitle((int) this.engineRPM + " rpm");
         this.engineRPMBar.setProgress(this.engineRPM / 7500); // bar is out of 7500 rpm
 
+        updateSpeed();
+    }
+
+    public void updateSpeed() {
         double finalDriveRatio = this.model.getFinalDrive();
         double currentGearRatio = this.model.getForwardGear(this.currentGear);
         this.speed = (this.engineRPM / (currentGearRatio * finalDriveRatio))  // convert engine speed to wheel speed
