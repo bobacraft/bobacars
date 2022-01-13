@@ -4,6 +4,7 @@ import best.boba.bobacars.Config;
 import best.boba.bobacars.car.Car;
 import best.boba.bobacars.car.CarModel;
 import best.boba.bobacars.car.CarModelDataType;
+import best.boba.bobacars.car.ShiftableAutomaticCar;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.minecart.RideableMinecart;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -15,6 +16,11 @@ public class Utilities {
     private Utilities() {}
 
     public static @Nullable Car getCarFromMinecartData(Config config, RideableMinecart minecart) {
+        UUID uuid = minecart.getUniqueId();
+        if (config.hasCar(uuid)) {
+            return config.getCar(uuid);
+        }
+
         PersistentDataContainer container = minecart.getPersistentDataContainer();
         NamespacedKey key = new NamespacedKey(config.getPlugin(), "bobacarModel");
         CarModelDataType dataType = new CarModelDataType();
@@ -24,15 +30,9 @@ public class Utilities {
         }
 
         CarModel model = container.get(key, dataType);
-        UUID uuid = minecart.getUniqueId();
-
-        if (!config.hasCar(uuid)) {
-            Car car = new Car(model);
-            config.addCar(uuid, car);
-            return car;
-        }
-
-        return config.getCar(uuid);
+        Car car = new ShiftableAutomaticCar(model);
+        config.addCar(uuid, car);
+        return car;
     }
 
     public static boolean destroyCar(Config config, RideableMinecart minecart) {
@@ -40,7 +40,7 @@ public class Utilities {
 
         Car car = config.getCar(uuid);
         if (car != null) {
-            car.destroy();
+            car.getStatusBars().destroy();
             config.removeCar(uuid);
         }
 

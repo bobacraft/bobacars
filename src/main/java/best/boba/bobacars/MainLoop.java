@@ -23,7 +23,7 @@ public class MainLoop extends BukkitRunnable {
                 continue;
             }
             try {
-                if (!(minecart.getPassengers().get(0) instanceof Player player)) {
+                if (!(minecart.getPassengers().get(0) instanceof Player)) {
                     continue;
                 }
             }
@@ -32,7 +32,9 @@ public class MainLoop extends BukkitRunnable {
             }
 
             Car car = entry.getValue();
-            Vector velocity = new Vector(car.getSpeed(), 0, 0);
+            car.tickSpeed();
+
+            Vector velocity = new Vector(car.getSpeedMetersPerTick(), 0, 0);
             minecart.setVelocity(velocity);
         }
     }

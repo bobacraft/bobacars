@@ -29,7 +29,8 @@ public class ListenerVehicleEnter implements Listener {
             return;
         }
 
-        car.addPlayer(player);
+        car.getStatusBars().addPlayer(player);
         player.sendMessage(BobacarMessages.entered);
+        player.getInventory().setHeldItemSlot(0);
     }
 }

@@ -8,6 +8,9 @@ public class XLE2010 implements CarModel {
     private static final double reverseGear = 4.15;
     private static final double revsPerMeter = 1.240804224;
 
+    private static final int minimumGear = 1;
+    private static final int maximumGear = 6;
+
     @Override
     public double getFinalDrive() {
         return finalDrive;
@@ -31,5 +34,15 @@ public class XLE2010 implements CarModel {
     @Override
     public double getRevsPerMeter() {
         return revsPerMeter;
+    }
+
+    @Override
+    public int getMinimumGear() {
+        return minimumGear;
+    }
+
+    @Override
+    public int getMaximumGear() {
+        return maximumGear;
     }
 }

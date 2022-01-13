@@ -1,6 +1,7 @@
 package best.boba.bobacars;
 
 import best.boba.bobacars.car.Car;
+import best.boba.bobacars.car.ShiftableAutomaticCar;
 import best.boba.bobacars.messages.BobacarMessages;
 import best.boba.bobacars.utility.Utilities;
 import org.bukkit.entity.Player;
@@ -29,7 +30,7 @@ public class ListenerVehicleExit implements Listener {
             return;
         }
 
-        car.removePlayer(player);
+        car.getStatusBars().removePlayer(player);
         player.sendMessage(BobacarMessages.exited);
     }
 }

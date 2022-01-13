@@ -1,6 +1,7 @@
 package best.boba.bobacars;
 
 import best.boba.bobacars.car.Car;
+import best.boba.bobacars.car.ShiftableAutomaticCar;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -1,5 +1,6 @@
 package best.boba.bobacars;
 
+import best.boba.bobacars.car.AccelerationType;
 import best.boba.bobacars.car.Car;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.RideableMinecart;
@@ -15,8 +16,6 @@ public class ListenerPlayerItemHeld implements Listener {
 
     @EventHandler
     public void onPlayerItemHeld(PlayerItemHeldEvent event) {
-        int oldSlot = event.getPreviousSlot();
-        int newSlot = event.getNewSlot();
         Player player = event.getPlayer();
         if (!(player.getVehicle() instanceof RideableMinecart minecart)) {
             return;
@@ -26,10 +25,9 @@ public class ListenerPlayerItemHeld implements Listener {
             return;
         }
 
-        int slotChange = oldSlot - newSlot;
-        player.sendMessage("slotChange = " + slotChange);
-        event.setCancelled(true);
+        int oldSlot = event.getPreviousSlot();
+        int newSlot = event.getNewSlot();
 
-        car.setEngineRPM(car.getEngineRPM() + 150 * slotChange);
+        car.setAcceleration(AccelerationType.ACCELERATE, (double) newSlot / 8);
     }
 }

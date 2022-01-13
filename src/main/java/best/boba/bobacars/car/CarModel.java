@@ -8,4 +8,7 @@ public interface CarModel extends Serializable {
     double getForwardGear(int gear);
     double getReverseGear();
     double getRevsPerMeter();
+
+    int getMinimumGear();
+    int getMaximumGear();
 }
